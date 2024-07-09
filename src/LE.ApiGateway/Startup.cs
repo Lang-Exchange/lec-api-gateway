@@ -24,21 +24,21 @@ namespace LE.ApiGateway
         {
             services.AddCors(options =>
             {
-                var allowedOrigins = Configuration.GetSection("GatewayOptions:AllowedOrigins").Get<string[]>();
                 var isAllowedAll = Configuration.GetSection("GatewayOptions:AllowedAll").Get<bool>();
+                var allowedOrigins = Configuration.GetSection("GatewayOptions:AllowedOrigins").Get<string[]>();
                 options.AddPolicy("CorsPolicy", builder =>
                 {
                     var corsPolicy = isAllowedAll ? builder.SetIsOriginAllowed(x => _ = true) :
                     allowedOrigins?.Length > 0 ? builder.WithOrigins(allowedOrigins) : null;
                     corsPolicy?.AllowAnyMethod()
-                              .AllowAnyHeader()
-                              .AllowCredentials();
+                               .AllowAnyHeader()
+                               .AllowCredentials();
                 });
             });
 
             services.AddCustomAuthorization(Configuration);
             services.AddOcelot(Configuration)
-                .AddConsul();
+                    .AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

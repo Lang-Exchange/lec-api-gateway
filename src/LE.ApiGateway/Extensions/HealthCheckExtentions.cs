@@ -4,7 +4,7 @@ using System.IO;
 
 namespace LE.ApiGateway.Extensions
 {
-    public static class ApiGatewayExtension
+    public static class HealthCheckExtentions
     {
         public static IApplicationBuilder UseHealthCheck(this IApplicationBuilder app, string path)
         {
@@ -13,7 +13,7 @@ namespace LE.ApiGateway.Extensions
                 var requestPath = ctx.Request.Path.ToString();
                 if (requestPath.Equals(path))
                 {
-                    return ctx.Response.WriteAsync("ok");
+                    return ctx.Response.WriteAsync("Ok");
                 }
                 return next.Invoke();
             });

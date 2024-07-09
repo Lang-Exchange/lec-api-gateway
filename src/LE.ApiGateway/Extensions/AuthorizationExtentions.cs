@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace LE.ApiGateway.Extensions
 {
-    public static class AuthorizationExtensions
+    public static class AuthorizationExtentions
     {
         private const string Authorization = "Authorization";
         private static string GetAuthorizationValue(IHeaderDictionary Headers)
